@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const VerifyRoutes = require("./Routes/verify");
+const VerifyRoutes = require("./verify");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
