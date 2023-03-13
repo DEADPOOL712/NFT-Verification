@@ -5,19 +5,27 @@ const Network = require("alchemy-sdk").Network;
 
 router.post("/", (req, res) => {
   // getting body data through post request
-  const publicKey = req.body.publicKey;
+  let publicKey;
+  try {
+    publicKey = ethers.getAddress(req.body.publicKey);
+  } catch (err) {
+    console.log(err);
+  }
   const contractAddress = req.body.contractAddress;
   const tokenId = req.body.tokenId;
   const hash = req.body.hash;
   const signMessage = req.body.signMessage;
 
   const decode = (publickey) => {
-    // checking public key fuction
+    console.log(req.body);
+    // checking public key fuc
     const genPublicKey = ethers.recoverAddress(
       ethers.hashMessage(hash),
       signMessage
     );
+
     console.log("body key =>", publicKey);
+    console.log("GEN => ", genPublicKey);
     const result = publickey === genPublicKey ? true : false;
     console.log("result => ", result);
 
@@ -28,6 +36,7 @@ router.post("/", (req, res) => {
         network: Network.MATIC_MAINNET,
       };
       const alchemy = new Alchemy(settings);
+      console.log(contractAddress, tokenId);
       const data = await alchemy.nft.getOwnersForNft(contractAddress, tokenId);
       const resOwnerAddress = data.owners;
       console.log("resOwner => ", resOwnerAddress[0]);
@@ -48,7 +57,6 @@ router.post("/", (req, res) => {
       });
     }
   };
-
   // calling decode function for checking public key
   decode(publicKey);
 });
