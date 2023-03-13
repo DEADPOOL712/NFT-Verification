@@ -4,18 +4,19 @@ const jwt = require("jsonwebtoken");
 const Alchemy = require("alchemy-sdk").Alchemy;
 const Network = require("alchemy-sdk").Network;
 const bodyParser = require("body-parser");
+const CreateRoutes = require("./Routes/createJwt");
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/create", CreateRoutes);
 
 app.post("/verify", (req, res) => {
   const jwtToken = req.body.jwtToken;
   const contractAddress = req.body.contractAddress;
   const tokenId = req.body.tokenId;
-
   const decoded = jwt.verify(jwtToken, "12345");
   const ownerAddress = decoded.owner;
-  console.log(ownerAddress);
 
+  console.log(ownerAddress);
   const verifyOwner = async () => {
     const settings = {
       apiKey: "WIeYyhZo4J_UI8A2AqOi3KvCGVTK_nM4",
