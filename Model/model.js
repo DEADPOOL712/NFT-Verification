@@ -9,7 +9,6 @@ const mySchema = new mongoose.Schema({
   contractaddress: { type: String, required: true },
   deployeraddress: { type: String, required: true },
   coverUrl: { type: String, required: true },
-  nftUrl: { type: String, require: true },
 });
 
 const MyModel = mongoose.model("MyModel", mySchema);
