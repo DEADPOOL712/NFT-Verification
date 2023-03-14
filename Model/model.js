@@ -8,6 +8,7 @@ const mySchema = new mongoose.Schema({
   price: { type: Number, required: true },
   contractaddress: { type: String, required: true },
   deployeraddress: { type: String, required: true },
+  coverUrl: { type: String, required: true },
 });
 
 const MyModel = mongoose.model("MyModel", mySchema);

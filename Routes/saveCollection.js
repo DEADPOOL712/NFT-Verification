@@ -9,6 +9,7 @@ router.post("/", (req, res) => {
     price: req.body.price,
     contractaddress: req.body.contractaddress,
     deployeraddress: req.body.deployeraddress,
+    coverUrl: req.body.coverUrl,
   });
 
   newDocument
