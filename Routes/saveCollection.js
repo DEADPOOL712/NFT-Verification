@@ -10,6 +10,7 @@ router.post("/", (req, res) => {
     contractaddress: req.body.contractaddress,
     deployeraddress: req.body.deployeraddress,
     coverUrl: req.body.coverUrl,
+    nftUrl: req.body.nftUrl,
   });
 
   newDocument
